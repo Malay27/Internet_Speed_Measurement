@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: black;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: arial;
+            flex-direction: column;
+        }
+        .text_about{
+            padding: 30px;
+        }
+        .skill {
+            width: 500px;
+            height: 500px;
+            /* background:cornflowerblue; */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .outer {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            border: 2px solid darkblue;
+            padding: 20px;
+            box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+                -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+
+        }
+
+        .inner {
+            height: 160px;
+            width: 160px;
+            border-radius: 50%;
+            border: 2px solid darkblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+                inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+                -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+                0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+                0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        #number {
+            font-weight: 600;
+            color: #555;
+            padding: 40px;
+        }
+
+        .go {
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+            outline: none;
+            user-select: none;
+            cursor: pointer;
+            z-index: 2;
+            position: relative;
+            left: 0;
+            top: 0;
+            background: linear-gradient(#2454ad, #51c2be);
+            box-shadow: 0px 5px 5px 0px #9cdfdc;
+            border: 2px solid #43c2bb;
+            font-weight: 550;
+            transition: 0.5s;
+        }
+
+        .go:active {
+            transform-origin: bottom;
+            background: linear-gradient(#6784b8, #88d2d0);
+            transform: rotateX(30deg);
+            box-shadow: 0px 5px 5px 0px #57dad4;
+        }
+
+        circle {
+            fill: none;
+            stroke: url(#GradientColor);
+            stroke-width: 17px;
+            stroke-dasharray: 602;
+            stroke-dashoffset: 602;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        P{ 
+            font-weight: bold;
+            font-size: 30px;
+            border: 2px solid #cc00ff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="skill">
+        <div class="text_about">
+            <table>
+                <tr>
+                    <!-- <td style="border: 2px solid #cc00ff; border-radius: 5px; width: 2%;">
+                        <i class="fa-light fa-gauge-high"></i>
+                        &nbsp;
+                        <i class="fa-solid fa-gauge" style="color: white; font-size:30px"></i> 
+                    <span style=" font-size: 30px;"> &nbsp;<strong>SPEEDTEST</strong></span> -->
+                    <P>SPEEDTEST</P>
+                </td>
+                </tr>
+            </table>
+        </div>
+        <div class="outer">
+            <div class="inner">
+
+            </div>
+        </div>
+        <div id="number">
+        </div>
+        <form action="/index" method="post">
+            <input class="go" type="submit" value="GO">
+        </form>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="500px" height="500px">
+            <defs>
+                <linearGradient id="GradientColor">
+                    <stop offset="0%" stop-color="#e91e63" />
+                    <stop offset="100%" stop-color="#673ab7" />
+                </linearGradient>
+            </defs>
+            <circle id="circle" cx="250" cy="245" r="90" stroke-linecap="round" />
+        </svg>
+    </div>
+    <script>
+        var element1 = document.getElementById("circle");
+        counter2 = 602.0
+        setInterval(() => {
+            if (counter2 == 700) {
+                clearInterval();
+            }
+            else {
+                counter2 -= 1.0;
+                element1.style.strokeDashoffset = parseInt(counter2);
+            }
+        }, 10)
+    </script>
+</body>
+
+</html>

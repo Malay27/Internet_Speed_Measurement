@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/8ec6be9b67.js" crossorigin="anonymous"></script>
+    <title>Speed test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* background: #e3edf7; */
+            /* background: linear-gradient(black, #24242400); */
+            background: black;
+            color: white;
+            font-family: arial;
+            height: 100vh;
+        }
+
+        .table {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill {
+            width: 500px;
+            height: 500px;
+            /* background:cornflowerblue; */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .outer {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            /* border: 1px solid gray; */
+            border: 2px solid darkblue;
+            padding: 20px;
+            box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+                -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+
+        }
+
+        .inner {
+            height: 160px;
+            width: 160px;
+            border-radius: 50%;
+            /* border: 1px solid gray; */
+            border: 2px solid darkblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+                inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+                -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+                0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+                0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        #number1 {
+            position: relative;
+            top: 50px;
+            border: 1px solid #cc00ff;
+            border-radius: 10px;
+            font-weight: 600;
+            color: #20b8da;
+            padding: 30px;
+            font-family: arial;
+            font-size: 30px;
+        }
+
+        #number2 {
+            position: relative;
+            top: 50px;
+            border: 1px solid #cc00ff;
+            border-radius: 10px;
+            font-weight: 600;
+            color: rgb(32, 184, 218);
+            padding: 30px;
+            font-family: arial;
+            font-size: 30px;
+        }
+
+        .title {
+            position: relative;
+            bottom: 40px;
+            border: 1px solid #cc00ff;
+            border-radius: 10px;
+            font-weight: 600;
+            color: rgb(32, 184, 218);
+            padding: 30px;
+            font-family: arial;
+            font-size: 30px;
+        }
+
+        #circle1 {
+            fill: none;
+            stroke: url(#GradientColor);
+            stroke-width: 17px;
+            stroke-dasharray: 602;
+            stroke-dashoffset: 602;
+        }
+
+        #circle2 {
+            fill: none;
+            stroke: url(#GradientColor);
+            stroke-width: 17px;
+            stroke-dasharray: 602;
+            stroke-dashoffset: 602;
+        }
+
+        .ping_value {
+            text-align: center;
+            position: relative;
+            top: 40px;
+            border: 1px solid #cc00ff;
+            border-radius: 10px;
+            width: 500px;
+            font-weight: 600;
+            color: rgb(32, 184, 218);
+            padding: 20px;
+            font-size: 30px;
+            font-family: arial;
+            margin: auto;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="table">
+        <table>
+            <tr>
+                <div class="skill">
+                    <div class="title">
+                        <i class="fa-soild fa-download" style="color: white;"></i>
+                        Download Speed
+                    </div>
+                    <div class="outer">
+                        <div class="inner">
+                        </div>
+                    </div>
+                    <div id="number1">
+                        {{Speed1}}
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="500px" height="500px">
+                        <defs>
+                            <linearGradient id="GradientColor">
+                                <stop offset="0%" stop-color="#e91e63" />
+                                <stop offset="100%" stop-color="#673ab7" />
+                            </linearGradient>
+                        </defs>
+                        <circle id="circle1" cx="250" cy="250" r="90" stroke-linecap="round" />
+                    </svg>
+                </div>
+            </tr>
+            <tr>
+                <div class="skill">
+                    <div class="title">
+                        <i class="fa-soild fa-upload" style="color: white;"></i>
+                        Upload Speed
+                    </div>
+                    <div class="outer">
+                        <div class="inner">
+                        </div>
+                    </div>
+                    <div id="number2">
+                        {{Speed2}}
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="500px" height="500px">
+                        <defs>
+                            <linearGradient id="GradientColor">
+                                <stop offset="0%" stop-color="#e91e63" />
+                                <stop offset="100%" stop-color="#673ab7" />
+                            </linearGradient>
+                        </defs>
+                        <circle id="circle2" cx="250" cy="250" r="90" stroke-linecap="round" />
+                    </svg>
+                </div>
+            </tr>
+        </table>
+    </div>
+    <div class="ping_value">
+        Ping value is : {{Ping}} ms
+    </div>
+
+    <script>
+
+        // for download speed 
+        let number1 = document.getElementById("number1").innerHTML;
+        nu1 = parseInt(number1)
+        console.log(nu1)
+        nu1 = parseFloat(nu1)
+        console.log(nu1)
+        num1 = nu1
+        gh=nu1
+        h = parseFloat(number1)
+        k = (h + "").split(".")[1];
+        // console.log(h)
+        // console.log(k)
+        let counter1 = 0.0
+        setInterval(() => {
+            if (counter1 == num1) {
+                clearInterval();
+            }
+            else {
+                counter1 += 1.0;
+                document.getElementById("number1").innerHTML = h + " Mbps";
+            }
+        }, 100);
+        document.getElementById("number1").innerHTML = h + " Mbps";
+
+        var element1 = document.getElementById("circle1");
+
+
+        if (nu1 == 0) {
+            if (k >= 0 && k <= 10)
+                nu1 = 602 - 60
+            else if (k > 10 && k <= 20)
+                nu1 = 602 - 120
+            else if (k > 20 && k <= 30)
+                nu1 = 602 - 180
+            else if (k > 30 && k <= 40)
+                nu1 = 602 - 240
+            else if (k > 40 && k <= 50)
+                nu1 = 602 - 300
+            else if (k > 50 && k <= 60)
+                nu1 = 602 - 360
+            else if (k > 60 && k <= 70)
+                nu1 = 602 - 420
+            else if (k > 70 && k <= 80)
+                nu1 = 602 - 480
+            else if (k > 80 && k <= 90)
+                nu1 = 602 - 540
+            else if (k > 90 && k <= 100)
+                nu1 = 602 - 600
+
+        }
+        else if (nu1 > 0 && nu1 <= 100) {
+            nu1 = nu1 * 6
+            nu1 = 602 - nu1
+        }
+        else if (nu1 > 100 && nu1 <= 200) {
+            nu1 = nu1 * 3
+            nu1 = 602 - nu1
+        }
+        else if (nu1 > 200 && nu1 <= 300) {
+            nu1 = nu1 * 2
+            nu1 = 602 - nu1
+        }
+        else if (nu1 > 300 && nu1 <= 600) {
+            nu1 = 602 - nu1
+        }
+        else {
+            nu1 = 0
+        }
+        counter2 = 602.0
+        setInterval(() => {
+            if (counter2 == nu1) {
+                clearInterval();
+            }
+            else {
+                counter2 -= 1.0;
+                element1.style.strokeDashoffset = parseInt(counter2);
+            }
+        }, 30)
+
+
+
+        // for upload speed
+
+        let number2 = document.getElementById("number2").innerHTML;
+        nu2 = parseInt(number2)
+        nu2 = parseFloat(nu2)
+        num2 = nu2
+        h1 = parseFloat(number2)
+        k1 = (h1 + "").split(".")[1];
+        let counter3 = 0.0
+        setInterval(() => {
+            if (counter3 == num2) {
+                clearInterval();
+            }
+            else {
+                counter3 += 1.0;
+                document.getElementById("number2").innerHTML = h1 + " Mbps";
+            }
+        }, 100);
+        document.getElementById("number2").innerHTML = h1 + " Mbps";
+
+        var element2 = document.getElementById("circle2");
+        if (nu2 == 0) {
+            if (gh == 0) {
+                if (k1 >= 0 && k1 <= 10)
+                    nu2 = 602 - 60
+                else if (k1 > 10 && k1 <= 20)
+                    nu2 = 602 - 120
+                else if (k1 > 20 && k1 <= 30)
+                    nu2 = 602 - 180
+                else if (k1 > 30 && k1 <= 40)
+                    nu2 = 602 - 240
+                else if (k1 > 40 && k1 <= 50)
+                    nu2 = 602 - 300
+                else if (k1 > 50 && k1 <= 60)
+                    nu2 = 602 - 360
+                else if (k1 > 60 && k1 <= 70)
+                    nu2 = 602 - 420
+                else if (k1 > 70 && k1 <= 80)
+                    nu2 = 602 - 480
+                else if (k1 > 80 && k1 <= 90)
+                    nu2 = 602 - 540
+                else if (k1 > 90 && k1 <= 100)
+                    nu2 = 602 - 600
+            }
+            else {
+                nu2 = nu1 / 2
+            }
+
+        }
+        else if (nu2 > 0 && nu2 <= 100) {
+            nu2 = nu2 * 6
+            nu2 = 602 - nu2
+        }
+        else if (nu2 > 100 && nu2 <= 200) {
+            nu2 = nu2 * 3
+            nu2 = 602 - nu2
+        }
+        else if (nu2 > 200 && nu2 <= 300) {
+            nu2 = nu2 * 2
+            nu2 = 602 - nu2
+        }
+        else if (nu2 > 300 && nu2 <= 600) {
+            nu2 = 602 - nu2
+        }
+        else {
+            nu2 = 0
+        }
+        counter4 = 602.0
+        setInterval(() => {
+            if (counter4 == nu2) {
+                clearInterval();
+            }
+            else {
+                counter4 -= 1.0;
+                element2.style.strokeDashoffset = parseInt(counter4);
+            }
+        }, 30)
+
+
+    </script>
+</body>
+
+</html>
